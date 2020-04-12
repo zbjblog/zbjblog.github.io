@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zbjblog.github.io">
-  <title>Archives: 2020 | zhangboju&#39;s Blog</title>
+  <title>LuoguP2814【家谱】题解 | zhangboju&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="人生如逆旅，我亦是行人">
-<meta property="og:type" content="website">
-<meta property="og:title" content="zhangboju&#39;s Blog">
-<meta property="og:url" content="https://zbjblog.github.io/archives/2020/index.html">
+  <meta name="description" content="蒟蒻我来给大家献丑了 原题链接：  P2814 家谱  显然，看到这熟悉的画风——找祖先，我们自然而然就想到了神器：并查集！ 先来给大家普及一波（知道的请跳过） 推荐题目：  P1551 亲戚  P1892 [BOI2003]团伙  P3367 【模板】并查集   百度一下，你就知道：  并查集  给大家提供路径压缩模板： 123456int fa[maxx];int find(int x)&amp;#1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LuoguP2814【家谱】题解">
+<meta property="og:url" content="https://zbjblog.github.io/2020/04/12/LuoguP2814%E3%80%90%E5%AE%B6%E8%B0%B1%E3%80%91%E9%A2%98%E8%A7%A3/index.html">
 <meta property="og:site_name" content="zhangboju&#39;s Blog">
-<meta property="og:description" content="人生如逆旅，我亦是行人">
+<meta property="og:description" content="蒟蒻我来给大家献丑了 原题链接：  P2814 家谱  显然，看到这熟悉的画风——找祖先，我们自然而然就想到了神器：并查集！ 先来给大家普及一波（知道的请跳过） 推荐题目：  P1551 亲戚  P1892 [BOI2003]团伙  P3367 【模板】并查集   百度一下，你就知道：  并查集  给大家提供路径压缩模板： 123456int fa[maxx];int find(int x)&amp;#1">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-12T11:03:40.216Z">
+<meta property="article:modified_time" content="2020-04-12T11:06:33.775Z">
 <meta property="article:author" content="zhangboju">
+<meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="zhangboju&#39;s Blog" type="application/atom+xml">
@@ -142,36 +145,98 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-LuoguP2814【家谱】题解" class="article article-type-post " itemscope itemprop="blogPost">
   
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/12/LuoguP2814%E3%80%90%E5%AE%B6%E8%B0%B1%E3%80%91%E9%A2%98%E8%A7%A3/" class="archive-article-date">
+    <h1 class="article-title" itemprop="name">
+      LuoguP2814【家谱】题解
+    </h1>
+  
+
+        
+        <a href="/2020/04/12/LuoguP2814%E3%80%90%E5%AE%B6%E8%B0%B1%E3%80%91%E9%A2%98%E8%A7%A3/" class="archive-article-date">
   	<time datetime="2020-04-12T11:03:40.216Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-12</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/12/LuoguP2814%E3%80%90%E5%AE%B6%E8%B0%B1%E3%80%91%E9%A2%98%E8%A7%A3/">LuoguP2814【家谱】题解</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>蒟蒻我来给大家献丑了</p>
+<p>原题链接：</p>
+<ul>
+<li><a href="https://www.luogu.com.cn/problem/P2814" target="_blank" rel="noopener">P2814 家谱</a></li>
+</ul>
+<p>显然，看到这熟悉的画风——找祖先，我们自然而然就想到了神器：<br>并查集！</p>
+<p>先来给大家普及一波（知道的请跳过）</p>
+<p>推荐题目：</p>
+<ul>
+<li><p><a href="https://www.luogu.com.cn/problem/P1551" target="_blank" rel="noopener">P1551 亲戚</a></p>
+</li>
+<li><p><a href="https://www.luogu.com.cn/problem/P1892" target="_blank" rel="noopener">P1892 [BOI2003]团伙</a></p>
+</li>
+<li><p><a href="https://www.luogu.com.cn/problem/P3367" target="_blank" rel="noopener">P3367 【模板】并查集</a></p>
+</li>
+</ul>
+<p>百度一下，你就知道：</p>
+<ul>
+<li><a href="https://baike.baidu.com/item/并查集/9388442?fr=aladdin" target="_blank" rel="noopener">并查集</a></li>
+</ul>
+<p>给大家提供路径压缩模板：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> fa[maxx];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(fa[x]!=x) fa[x]=find(fa[x]);</span><br><span class="line">	<span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>咳咳，切入正题</p>
+<p>一看，这不就是把板子中的数字换成了字符串了吗？</p>
+<p>那么，问题来了，怎样转换呢？</p>
+<p>c++神器：STL！！</p>
+<p>俗话说的好：STL在手，天下我有！</p>
+<p>明摆着的 <del>离散化</del> 映射容器：map ，为何不用？？</p>
+<p>所谓map ，定义为</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;类型1，类型2&gt;变量名;</span><br></pre></td></tr></table></figure>
+<p>比如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="built_in">string</span>&gt;mp;</span><br></pre></td></tr></table></figure><br>我们这样来：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	mp[<span class="string">"P2814"</span>]=<span class="string">"提高+/省选-"</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;mp[<span class="string">"P2814]&lt;&lt;endl&lt;&lt;mp[提高+/省选-];</span></span><br></pre></td></tr></table></figure>
+<p>会输出：</p>
+<pre><code>提高+/省选-
 
-        <div class="article-info info-on-right">
-          
+(这里有一个空符)
+</code></pre><p>看见木有，这就是一个加强版的数组！！</p>
+<p>有了这些，我们很容易的想到：</p>
+<p>将数字替换成字符串，fa数组就定义为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="built_in">string</span>&gt; mp;</span><br></pre></td></tr></table></figure>
+<p>（看这篇题解的人，我默认你会string）</p>
+<p>相应的，find函数就写为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">find</span><span class="params">(<span class="built_in">string</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(fa[x]!=x) fa[x]=find(fa[x]);</span><br><span class="line">    <span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么，就只剩代码细节问题了:</p>
+<ul>
+<li><p>如果这行第一个字符是#：</p>
+<p> 1.这行剩下的字符就是这个人</p>
+<p> 2.看这个人有没有父亲，如果没有，就让 <del>我</del> 暂时扮演一下他父亲的角色</p>
+<p> 3.将这个人保存，以便下一行儿子找到他</p>
+</li>
+<li><p>如果这行第一个字符是+：</p>
+<p>  1.这行剩下的字符就是这个人</p>
+<p>  2.将保存下的他的父亲设为他的父亲（<del>是不是有点怪？</del>）</p>
+<p>  注意顺序，不要乱伦！！</p>
+</li>
+<li><p>如果这行第一个字符是？：</p>
+<p>  1.这行剩下的字符就是这个人</p>
+<p>  2.不用我说，直接find(这个人)！</p>
+</li>
+</ul>
+<p>贴AC CODE：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="built_in">string</span>&gt;fa;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="built_in">string</span> <span class="title">found</span><span class="params">(<span class="built_in">string</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(fa[x]!=x) fa[x]=found(fa[x]);</span><br><span class="line">	<span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> c;<span class="built_in">string</span> s,k;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;c;</span><br><span class="line">		<span class="keyword">if</span>(c==<span class="string">'$'</span>) <span class="keyword">break</span>;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;s;</span><br><span class="line">		<span class="keyword">if</span>(c==<span class="string">'#'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(fa[s]==<span class="string">""</span>) fa[s]=s;</span><br><span class="line">			k=s;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">'+'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			fa[s]=k;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">'?'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;s&lt;&lt;<span class="string">" "</span>&lt;&lt;found(s)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -183,209 +248,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zbjblog.github.io/2020/04/12/LuoguP2814%E3%80%90%E5%AE%B6%E8%B0%B1%E3%80%91%E9%A2%98%E8%A7%A3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/12/LuoguP4826%20%E3%80%90%5BUSACO15FEB%5DSuperbull%20%E8%B6%85%E7%BA%A7%E7%89%9B%E3%80%91%E9%A2%98%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2020-04-12T11:02:05.581Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-12</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/12/LuoguP4826%20%E3%80%90%5BUSACO15FEB%5DSuperbull%20%E8%B6%85%E7%BA%A7%E7%89%9B%E3%80%91%E9%A2%98%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">LuoguP4826 【[USACO15FEB]Superbull 超级牛】题解</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/12/LuoguP4826%20%E3%80%90%5BUSACO15FEB%5DSuperbull%20%E8%B6%85%E7%BA%A7%E7%89%9B%E3%80%91%E9%A2%98%E8%A7%A3/">LuoguP4826 【[USACO15FEB]Superbull 超级牛】题解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/12/%E9%B8%A1%E6%B1%A4/" class="archive-article-date">
-  	<time datetime="2020-04-12T11:00:58.246Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-12</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/12/%E9%B8%A1%E6%B1%A4/">鸡汤</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/12/LuoguP2613%E3%80%90%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%9C%89%E7%90%86%E6%95%B0%E5%8F%96%E4%BD%99%E3%80%91%E9%A2%98%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2020-04-12T10:35:51.602Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/12/LuoguP2613%E3%80%90%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%9C%89%E7%90%86%E6%95%B0%E5%8F%96%E4%BD%99%E3%80%91%E9%A2%98%E8%A7%A3/">LuoguP2613【【模板】有理数取余】题解</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/12/CSP2019%E6%B8%B8%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-04-12T06:24:27.850Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/12/CSP2019%E6%B8%B8%E8%AE%B0/">CSP2019游记</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/10/LuoguP5752%E3%80%90-NOI1999-%E6%A3%8B%E7%9B%98%E5%88%86%E5%89%B2%E3%80%91%E9%A2%98%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2020-04-10T11:55:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/10/LuoguP5752%E3%80%90-NOI1999-%E6%A3%8B%E7%9B%98%E5%88%86%E5%89%B2%E3%80%91%E9%A2%98%E8%A7%A3/">LuoguP5752【[NOI1999]棋盘分割】题解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -409,8 +384,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

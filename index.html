@@ -338,64 +338,9 @@
 <li><a href="https://www.luogu.com.cn/problem/P2814" target="_blank" rel="noopener">P2814 家谱</a></li>
 </ul>
 <p>显然，看到这熟悉的画风——找祖先，我们自然而然就想到了神器：<br>并查集！</p>
-<p>先来给大家普及一波（知道的请跳过）</p>
-<p>推荐题目：</p>
-<ul>
-<li><p><a href="https://www.luogu.com.cn/problem/P1551" target="_blank" rel="noopener">P1551 亲戚</a></p>
-</li>
-<li><p><a href="https://www.luogu.com.cn/problem/P1892" target="_blank" rel="noopener">P1892 [BOI2003]团伙</a></p>
-</li>
-<li><p><a href="https://www.luogu.com.cn/problem/P3367" target="_blank" rel="noopener">P3367 【模板】并查集</a></p>
-</li>
-</ul>
-<p>百度一下，你就知道：</p>
-<ul>
-<li><a href="https://baike.baidu.com/item/并查集/9388442?fr=aladdin" target="_blank" rel="noopener">并查集</a></li>
-</ul>
-<p>给大家提供路径压缩模板：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> fa[maxx];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(fa[x]!=x) fa[x]=find(fa[x]);</span><br><span class="line">	<span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<p>咳咳，切入正题</p>
-<p>一看，这不就是把板子中的数字换成了字符串了吗？</p>
-<p>那么，问题来了，怎样转换呢？</p>
-<p>c++神器：STL！！</p>
-<p>俗话说的好：STL在手，天下我有！</p>
-<p>明摆着的 <del>离散化</del> 映射容器：map ，为何不用？？</p>
-<p>所谓map ，定义为</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;类型1，类型2&gt;变量名;</span><br></pre></td></tr></table></figure>
-<p>比如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="built_in">string</span>&gt;mp;</span><br></pre></td></tr></table></figure><br>我们这样来：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	mp[<span class="string">"P2814"</span>]=<span class="string">"提高+/省选-"</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;mp[<span class="string">"P2814]&lt;&lt;endl&lt;&lt;mp[提高+/省选-];</span></span><br></pre></td></tr></table></figure>
-<p>会输出：</p>
-<pre><code>提高+/省选-
-
-(这里有一个空符)
-</code></pre><p>看见木有，这就是一个加强版的数组！！</p>
-<p>有了这些，我们很容易的想到：</p>
-<p>将数字替换成字符串，fa数组就定义为：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="built_in">string</span>&gt; mp;</span><br></pre></td></tr></table></figure>
-<p>（看这篇题解的人，我默认你会string）</p>
-<p>相应的，find函数就写为：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">find</span><span class="params">(<span class="built_in">string</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(fa[x]!=x) fa[x]=find(fa[x]);</span><br><span class="line">    <span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>那么，就只剩代码细节问题了:</p>
-<ul>
-<li><p>如果这行第一个字符是#：</p>
-<p> 1.这行剩下的字符就是这个人</p>
-<p> 2.看这个人有没有父亲，如果没有，就让 <del>我</del> 暂时扮演一下他父亲的角色</p>
-<p> 3.将这个人保存，以便下一行儿子找到他</p>
-</li>
-<li><p>如果这行第一个字符是+：</p>
-<p>  1.这行剩下的字符就是这个人</p>
-<p>  2.将保存下的他的父亲设为他的父亲（<del>是不是有点怪？</del>）</p>
-<p>  注意顺序，不要乱伦！！</p>
-</li>
-<li><p>如果这行第一个字符是？：</p>
-<p>  1.这行剩下的字符就是这个人</p>
-<p>  2.不用我说，直接find(这个人)！</p>
-</li>
-</ul>
-<p>贴AC CODE：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="built_in">string</span>&gt;fa;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="built_in">string</span> <span class="title">found</span><span class="params">(<span class="built_in">string</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(fa[x]!=x) fa[x]=found(fa[x]);</span><br><span class="line">	<span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> c;<span class="built_in">string</span> s,k;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;c;</span><br><span class="line">		<span class="keyword">if</span>(c==<span class="string">'$'</span>) <span class="keyword">break</span>;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;s;</span><br><span class="line">		<span class="keyword">if</span>(c==<span class="string">'#'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(fa[s]==<span class="string">""</span>) fa[s]=s;</span><br><span class="line">			k=s;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">'+'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			fa[s]=k;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">'?'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;s&lt;&lt;<span class="string">" "</span>&lt;&lt;found(s)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        
+          <a class="article-more-a" href="/2020/04/12/LuoguP2814%E3%80%90%E5%AE%B6%E8%B0%B1%E3%80%91%E9%A2%98%E8%A7%A3/#more">阅读全文 >></a>
+        
       
 
       
@@ -470,79 +415,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><a href="https://www.luogu.com.cn/problem/P4826" target="_blank" rel="noopener">传送门：P4826 [USACO15FEB]Superbull 超级牛。</a></p>
-<p>让我们 <del>无耻地</del> 打开题目算法标签：</p>
-<p>【图的建立，建图】【生成树】。</p>
-<p>首先，是【图的建立，建图】。</p>
-<p>这么多牛，两两对决，那么我们直接两两建边，组成一个完全图，不就完事了吗？</p>
-<p>那么，节点就是牛，边权就是两头牛两两对战的值（即团队 ID 的异或值）。</p>
-<p>然后，将样例带进来，结合样例说明，我们选择了其中的牛，即选中了边（为绿色）：</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/9jjqhjpx.png" alt=""></p>
-<p>好的，我们已经用掉一个信息了，那还剩下：【生成树】。</p>
-<p>教练说过：</p>
-<blockquote>
-<p>一个 $n$ 个点的树有 $n-1$ 条边。</p>
-</blockquote>
-<p>我们再审一遍题，发现这些牛刚好决斗 $n-1$ 次！！！</p>
-<p>再将样例说明那张图旋转，简化：</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/fbnsfg5n.png" alt=""></p>
-<p>这不就是一棵树吗？</p>
-<p>所以，这是要求最大生成树！</p>
-<p>于是，【生成树】的性质也出来了！</p>
-<p>教练还说过：</p>
-<blockquote>
-<p>所谓最大生成树，就是在一个图中选出一个树，是树的边权和最大。</p>
-</blockquote>
-<p>我们想到了 Kruskal 算法</p>
-<p>Kruskal 的基本思路：</p>
-<ol>
-<li><p>将所有边按边权大小排序；</p>
-</li>
-<li><p>循环所有边 $e_1\sim e_m$，取出其端点，边权；</p>
-</li>
-<li><p>看端点 $a$ 和 $b$ 是否在同一集合中，如不是，答案加上边权，将其放入同一集合，计数器自加；</p>
-</li>
-<li><p>看计数器是否达到 $n-1$，即已有 $n-1$ 条边，退出。</p>
-</li>
-</ol>
-<p>可以看出，这个算法的时间复杂度为 $O(mlogm)$。</p>
-<p>其中，$m$ 表示边的数量。</p>
-<p>于是，这题没了！</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> v,u,w;</span><br><span class="line">&#125;e[<span class="number">4000005</span>];</span><br><span class="line"><span class="keyword">int</span> head[<span class="number">2005</span>],k=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> w)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	e[k].v=v;</span><br><span class="line">	e[k].w=w;</span><br><span class="line">	e[k].u=u;</span><br><span class="line">	k++;</span><br><span class="line">&#125;<span class="comment">//前向星存图</span></span><br><span class="line"><span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> node &amp; a,<span class="keyword">const</span> node &amp; b)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> a.w&gt;b.w;</span><br><span class="line">&#125;<span class="comment">//重载运算符</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">2005</span>];</span><br><span class="line"><span class="keyword">int</span> fa[<span class="number">2005</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(fa[x]!=x) fa[x]=find(fa[x]);</span><br><span class="line">	<span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;<span class="comment">//并查集</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;i;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			add(i,j,a[i]^a[j]);<span class="comment">//建边</span></span><br><span class="line">			cnt++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(e+<span class="number">1</span>,e+cnt+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">int</span> tot=<span class="number">0</span>,ans=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) fa[i]=i;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=cnt;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> a=find(e[i].u),b=find(e[i].v),w=e[i].w;</span><br><span class="line">		<span class="keyword">if</span>(a!=b)</span><br><span class="line">		&#123;</span><br><span class="line">			fa[a]=b;</span><br><span class="line">			tot++;</span><br><span class="line">			ans+=w;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(tot==n<span class="number">-1</span>) <span class="keyword">break</span>;</span><br><span class="line">	&#125;<span class="comment">//Kruskal</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后你发现你只对了一个点！<del>（不要问我为什么知道）</del></p>
-<p>然后你发现：</p>
-<blockquote>
-<p>“十年OI一场空，不开long long见祖宗！</p>
-</blockquote>
-<p>AC Code：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	ll v,u,w;</span><br><span class="line">&#125;e[<span class="number">4000005</span>];</span><br><span class="line"><span class="keyword">int</span> head[<span class="number">2005</span>],k=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,ll w)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	e[k].v=v;</span><br><span class="line">	e[k].w=w;</span><br><span class="line">	e[k].u=u;</span><br><span class="line">	k++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> node &amp; a,<span class="keyword">const</span> node &amp; b)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> a.w&gt;b.w;</span><br><span class="line">&#125;</span><br><span class="line">ll a[<span class="number">2005</span>];</span><br><span class="line"><span class="keyword">int</span> fa[<span class="number">2005</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(fa[x]!=x) fa[x]=find(fa[x]);</span><br><span class="line">	<span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;i;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			add(i,j,a[i]^a[j]);</span><br><span class="line">			cnt++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(e+<span class="number">1</span>,e+cnt+<span class="number">1</span>);</span><br><span class="line">	ll tot=<span class="number">0</span>,ans=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) fa[i]=i;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=cnt;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		ll a=find(e[i].u),b=find(e[i].v),w=e[i].w;</span><br><span class="line">		<span class="keyword">if</span>(a!=b)</span><br><span class="line">		&#123;</span><br><span class="line">			fa[a]=b;</span><br><span class="line">			tot++;</span><br><span class="line">			ans+=w;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(tot==n<span class="number">-1</span>) <span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>AC证明：</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/cjn2hhux.png" alt=""></p>
-<p>看一眼时间：3.32 s！！！</p>
-<p>因为时间复杂度是 $O(mlogm)$ 级别的，而 $m$ 是 $n^2$ 级别的！</p>
-<p>所以，我们在超时的边缘疯狂试探。</p>
-<p>这时，Prim 来拯救我们！</p>
-<blockquote>
-<p>所谓 Prim，在稠密图一方。</p>
-</blockquote>
-<p>Prim 的算法思想：和 Dijsktra 相似,只不过是把最后一步 $dis$ 数组的含义改为了到已选中的点中距离最长的长度。</p>
-<p>如果你不知道 Dijsktra，请转至：</p>
-<ul>
-<li><a href="https://www.luogu.com.cn/problem/P4779" target="_blank" rel="noopener">P4779 【模板】单源最短路径（标准版）</a></li>
-</ul>
-<p>注意此题是最大生成树，细节问题要区分。</p>
-<p>根据 Dijsktra 的复杂度，Prim 的复杂度，显然为: $O(n^2)$</p>
-<p>而n&lt;=2000，足以通过此题。</p>
-<p>那么，Prim 的板子改一改，就可以了！</p>
-<p>AC Code：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line">ll g[<span class="number">2005</span>][<span class="number">2005</span>];</span><br><span class="line">ll dis[<span class="number">2005</span>],a[<span class="number">2005</span>];</span><br><span class="line"><span class="keyword">bool</span> vis[<span class="number">2005</span>]; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;i;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			g[i][j]=g[j][i]=(a[i]^a[j]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;<span class="comment">//临接矩阵存图</span></span><br><span class="line">	ll res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> t=<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(!vis[j]&amp;&amp;(t==<span class="number">-1</span>||dis[j]&gt;dis[t])) t=j;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(i) res+=dis[t];</span><br><span class="line">		vis[t]=<span class="literal">true</span>; </span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			dis[j]=max(dis[j],g[t][j]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;<span class="comment">//Prim</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/j3c7lyx9.png" alt=""></p>
-<p>可以看到，完虐 Kruskal!</p>
-<p>妈妈再也不会担心会 TLE 了！</p>
-<h3 id="Conclusion："><a href="#Conclusion：" class="headerlink" title="Conclusion："></a>Conclusion：</h3><blockquote>
-<p>稠密图跑 Prim！</p>
-<p>稀疏图跑 Kruskal！</p>
-</blockquote>
-
+        
+          <a class="article-more-a" href="/2020/04/12/LuoguP4826%20%E3%80%90%5BUSACO15FEB%5DSuperbull%20%E8%B6%85%E7%BA%A7%E7%89%9B%E3%80%91%E9%A2%98%E8%A7%A3/#more">阅读全文 >></a>
+        
       
 
       
@@ -617,26 +492,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>【摘自破壁人五号的博客】</p>
-<p>如果26个英文字母</p>
-<p>A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
-<p>分别等于:</p>
-<p>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26</p>
-<p>那么：</p>
-<p>Knowledge (知识)： K+N+O+W+L+E+D+G+E＝ 11+14+15+23+12+5+4+7+5=96%。</p>
-<p>Workhard (努力工作）：W+O+R+K+H+A+R+D＝ 23+15+18+11+8+1+18+4 =98%。</p>
-<p>也就是说知识和努力工作对我们人生的影响可以达到96％和98％。</p>
-<p>那么，什么可以决定我们100％的人生呢？</p>
-<p>是Money（金钱）吗？M+O+N+E+Y=13+15+14+5+25=72%。</p>
-<p>看来也不是。</p>
-<p>是Leadership (领导能力)吗？</p>
-<p>L+E+A+D+E+R+S+H+I+P=12+5+1+4+5+18+19+9+16=89%</p>
-<p>还不是。</p>
-<p>其实，真正能使我们生活圆满的东西就在我们的代码里面！</p>
-<p>iostream(输入输出流所在的头文件)</p>
-<p>I+O+S+T+R+E+A+M=9+15+19+20+18+5+1+13=100%。</p>
-<p>所以还是认真写代码吧</p>
-<p>祭</p>
-
+        
+          <a class="article-more-a" href="/2020/04/12/%E9%B8%A1%E6%B1%A4/#more">阅读全文 >></a>
+        
       
 
       

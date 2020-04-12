@@ -581,6 +581,39 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+    <script type="text/javascript" src="/js/fireworks.js"></script>
+  
+  <!--动态线条背景-->
+  
+    <script type="text/javascript" color="255, 235, 59" opacity="0.8" 
+        zIndex="-1" count="120" 
+        src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+    </script>
+  
+  <!--代码雨-->
+  
+    <!-- 数字雨 -->
+    <canvas id="code_rain_canvas" width="1440" height="900"></canvas>
+    <script type="text/javascript" src="/js/code_rain.js">
+      <style>
+          #code_rain_canvas {
+            position: fixed;
+            right: 0px;
+            bottom: 0px;
+            min-width: 100%;
+            min-height: 100%;
+            height: auto;
+            width: auto;
+            z-index: 4;
+          }
+      </style>
+  </script>
+  
+
+
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {

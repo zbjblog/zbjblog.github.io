@@ -22,20 +22,20 @@
     var CONFIG = {"hostname":"zbjblog.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="蒟蒻我来给大家献丑了 原题链接：  P2814 家谱  显然，看到这熟悉的画风——找祖先，我们自然而然就想到了神器：并查集！">
+  <meta name="description" content="$\texttt{Beginning}$2020，多事之年 新冠疫情，Noip 的诈尸，CSP 的突然出现··· 然而，CSP-2020，如期而至">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LuoguP2814【家谱】题解">
-<meta property="og:url" content="https://zbjblog.github.io/2020/01/20/LuoguP2814%E3%80%90%E5%AE%B6%E8%B0%B1%E3%80%91%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:title" content="CSP2020游记">
+<meta property="og:url" content="https://zbjblog.github.io/2020/11/14/CSP2020%E6%B8%B8%E8%AE%B0/index.html">
 <meta property="og:site_name" content="zhangboju&#39;s Blog">
-<meta property="og:description" content="蒟蒻我来给大家献丑了 原题链接：  P2814 家谱  显然，看到这熟悉的画风——找祖先，我们自然而然就想到了神器：并查集！">
+<meta property="og:description" content="$\texttt{Beginning}$2020，多事之年 新冠疫情，Noip 的诈尸，CSP 的突然出现··· 然而，CSP-2020，如期而至">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-01-20T06:43:35.000Z">
-<meta property="article:modified_time" content="2020-04-25T05:50:38.795Z">
+<meta property="article:published_time" content="2020-11-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-12-13T04:10:49.949Z">
 <meta property="article:author" content="zhangboju">
-<meta property="article:tag" content="题解">
+<meta property="article:tag" content="随笔">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://zbjblog.github.io/2020/01/20/LuoguP2814%E3%80%90%E5%AE%B6%E8%B0%B1%E3%80%91%E9%A2%98%E8%A7%A3/">
+<link rel="canonical" href="https://zbjblog.github.io/2020/11/14/CSP2020%E6%B8%B8%E8%AE%B0/">
 
 
 <script id="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>LuoguP2814【家谱】题解 | zhangboju's Blog</title>
+  <title>CSP2020游记 | zhangboju's Blog</title>
   
 
 
@@ -154,7 +154,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zbjblog.github.io/2020/01/20/LuoguP2814%E3%80%90%E5%AE%B6%E8%B0%B1%E3%80%91%E9%A2%98%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="https://zbjblog.github.io/2020/11/14/CSP2020%E6%B8%B8%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -167,7 +167,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LuoguP2814【家谱】题解
+          CSP2020游记
         </h1>
 
         <div class="post-meta">
@@ -177,14 +177,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-01-20 14:43:35" itemprop="dateCreated datePublished" datetime="2020-01-20T14:43:35+08:00">2020-01-20</time>
+              <time title="创建时间：2020-11-14 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-14T00:00:00+08:00">2020-11-14</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-25 13:50:38" itemprop="dateModified" datetime="2020-04-25T13:50:38+08:00">2020-04-25</time>
+                <time title="修改时间：2020-12-13 12:10:49" itemprop="dateModified" datetime="2020-12-13T12:10:49+08:00">2020-12-13</time>
               </span>
 
           
@@ -198,70 +198,90 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>蒟蒻我来给大家献丑了</p>
-<p>原题链接：</p>
-<ul>
-<li><a href="https://www.luogu.com.cn/problem/P2814" target="_blank" rel="noopener">P2814 家谱</a></li>
-</ul>
-<p>显然，看到这熟悉的画风——找祖先，我们自然而然就想到了神器：<br>并查集！</p>
+        <h3 id="texttt-Beginning"><a href="#texttt-Beginning" class="headerlink" title="$\texttt{Beginning}$"></a>$\texttt{Beginning}$</h3><p>2020，多事之年</p>
+<p>新冠疫情，Noip 的诈尸，CSP 的突然出现···</p>
+<p>然而，CSP-2020，如期而至</p>
 <a id="more"></a>
-<p>先来给大家普及一波（知道的请跳过）</p>
-<p>推荐题目：</p>
-<ul>
-<li><p><a href="https://www.luogu.com.cn/problem/P1551" target="_blank" rel="noopener">P1551 亲戚</a></p>
-</li>
-<li><p><a href="https://www.luogu.com.cn/problem/P1892" target="_blank" rel="noopener">P1892 [BOI2003]团伙</a></p>
-</li>
-<li><p><a href="https://www.luogu.com.cn/problem/P3367" target="_blank" rel="noopener">P3367 【模板】并查集</a></p>
-</li>
-</ul>
-<p>百度一下，你就知道：</p>
-<ul>
-<li><a href="https://baike.baidu.com/item/并查集/9388442?fr=aladdin" target="_blank" rel="noopener">并查集</a></li>
-</ul>
-<p>给大家提供路径压缩模板：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> fa[maxx];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(fa[x]!=x) fa[x]=find(fa[x]);</span><br><span class="line">	<span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<p>咳咳，切入正题</p>
-<p>一看，这不就是把板子中的数字换成了字符串了吗？</p>
-<p>那么，问题来了，怎样转换呢？</p>
-<p>c++神器：STL！！</p>
-<p>俗话说的好：STL在手，天下我有！</p>
-<p>明摆着的 <del>离散化</del> 映射容器：map ，为何不用？？</p>
-<p>所谓map ，定义为</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;类型1，类型2&gt;变量名;</span><br></pre></td></tr></table></figure>
-<p>比如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="built_in">string</span>&gt;mp;</span><br></pre></td></tr></table></figure><br>我们这样来：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	mp[<span class="string">"P2814"</span>]=<span class="string">"提高+/省选-"</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;mp[<span class="string">"P2814]&lt;&lt;endl&lt;&lt;mp[提高+/省选-];</span></span><br></pre></td></tr></table></figure>
-<p>会输出：</p>
-<pre><code>提高+/省选-
-
-(这里有一个空符)
-</code></pre><p>看见木有，这就是一个加强版的数组！！</p>
-<p>有了这些，我们很容易的想到：</p>
-<p>将数字替换成字符串，fa数组就定义为：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="built_in">string</span>&gt; mp;</span><br></pre></td></tr></table></figure>
-<p>（看这篇题解的人，我默认你会string）</p>
-<p>相应的，find函数就写为：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">find</span><span class="params">(<span class="built_in">string</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(fa[x]!=x) fa[x]=find(fa[x]);</span><br><span class="line">    <span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>那么，就只剩代码细节问题了:</p>
-<ul>
-<li><p>如果这行第一个字符是#：</p>
-<p> 1.这行剩下的字符就是这个人</p>
-<p> 2.看这个人有没有父亲，如果没有，就让 <del>我</del> 暂时扮演一下他父亲的角色</p>
-<p> 3.将这个人保存，以便下一行儿子找到他</p>
-</li>
-<li><p>如果这行第一个字符是+：</p>
-<p>  1.这行剩下的字符就是这个人</p>
-<p>  2.将保存下的他的父亲设为他的父亲（<del>是不是有点怪？</del>）</p>
-<p>  注意顺序，不要乱伦！！</p>
-</li>
-<li><p>如果这行第一个字符是？：</p>
-<p>  1.这行剩下的字符就是这个人</p>
-<p>  2.不用我说，直接find(这个人)！</p>
-</li>
-</ul>
-<p>贴AC CODE：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="built_in">string</span>&gt;fa;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="built_in">string</span> <span class="title">found</span><span class="params">(<span class="built_in">string</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(fa[x]!=x) fa[x]=found(fa[x]);</span><br><span class="line">	<span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> c;<span class="built_in">string</span> s,k;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;c;</span><br><span class="line">		<span class="keyword">if</span>(c==<span class="string">'$'</span>) <span class="keyword">break</span>;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;s;</span><br><span class="line">		<span class="keyword">if</span>(c==<span class="string">'#'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(fa[s]==<span class="string">""</span>) fa[s]=s;</span><br><span class="line">			k=s;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">'+'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			fa[s]=k;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">'?'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;s&lt;&lt;<span class="string">" "</span>&lt;&lt;found(s)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="texttt-Day-N"><a href="#texttt-Day-N" class="headerlink" title="$\texttt{Day -N}$"></a>$\texttt{Day -N}$</h3><p>初赛日。</p>
+<p>这次竟然没有搞到初赛点，结果初赛点学校一个考试的也没有，xswl</p>
+<p>上午是提高的</p>
+<p>前面单选题倒是做的非常顺利，但是一到阅读程序的第二题，就开始懵逼了，不带 <code>rand</code> 的时间复杂度我还勉强会算，你给我来了一个带 <code>rand</code> 的？</p>
+<p>然后第三题也甚是自闭，不知道它在干些什么</p>
+<p>完善程序的第二题感觉和去年的有的一拼啊，位运算什么的不会啊···</p>
+<p>中午和粉兔的答案对了一发，75.5</p>
+<p>实际得分 72pts</p>
+<p>下午普及</p>
+<p>原来提高没考的组合计数全部放到普及了啊</p>
+<p>本来想 AK 初赛的，结果下来给同学讲题时发现自己 15 题少考虑了一个条件</p>
+<p>成功以 98pts 收官</p>
+<p>还好两个都过了初赛</p>
+<h3 id="texttt-Day-12"><a href="#texttt-Day-12" class="headerlink" title="$\texttt{Day -12}$"></a>$\texttt{Day -12}$</h3><p>开始抽时间搞竞赛</p>
+<p>突然发现自己什么都不会，赶紧找时间刷模板</p>
+<h3 id="texttt-Day-3"><a href="#texttt-Day-3" class="headerlink" title="$\texttt{Day -3}$"></a>$\texttt{Day -3}$</h3><p>期中考试</p>
+<p>考完数学之后发现自己心态炸了</p>
+<p>亏得考完发现成绩不差，rank3收官</p>
+<h3 id="texttt-Day-0"><a href="#texttt-Day-0" class="headerlink" title="$\texttt{Day 0}$"></a>$\texttt{Day 0}$</h3><p>下午出发去成都</p>
+<p>一路上打了一火车的扑克</p>
+<p>到了成都，获得成就：“成都小导游”</p>
+<p>从出站到酒店，一路都是我在带路</p>
+<p>晚上和教练一起吃饭，回酒店之后就一直在复习板子</p>
+<p>重点复习了线段树</p>
+<h3 id="texttt-Day-1-Morning-CSP-J"><a href="#texttt-Day-1-Morning-CSP-J" class="headerlink" title="$\texttt{Day 1 Morning CSP-J}$"></a>$\texttt{Day 1 Morning CSP-J}$</h3><p>上午，一切尚好</p>
+<p>这次的考点换到了电子科大的沙湖校区，条件比清水河校区差了不少</p>
+<p>好不容易找到考场</p>
+<p>ctmd，这里条件真的太好了！</p>
+<p>Inter Core i3 ???</p>
+<p>还是安全模式的 Win 7？</p>
+<p>这也太爽了吧！</p>
+<p>不过这次监考员良心，密码是直接下发的，省的打错</p>
+<p>当时并没有看出来是什么，但是下来后听说是他山之石？</p>
+<p>不管它那么多，先开题</p>
+<p>按照普及组传统顺序：1243</p>
+<p>T1 智障题，一个位运算开溜</p>
+<p>T2 一眼看上去没什么思路，但突然发现每个人的分数都小于等于 $600$ 时，似乎一切都简单了呢</p>
+<p>直接一个 $O(600n)$ 的桶解决问题</p>
+<p>然后就过拍了</p>
+<p>T4 感觉是个 DP，事实上也是</p>
+<p>由于横向只能向右，考虑按列进行转移</p>
+<p>开了 long long，过拍</p>
+<p>然而发现对拍的窗口关不掉，一直卡死？</p>
+<p>i3 牛逼！</p>
+<p>T3 写了个栈就溜了</p>
+<p>期望得分 $100+100+30+100=330$</p>
+<p>出来发现一堆人 AK</p>
+<h3 id="texttt-Day1-Afternoon-CSP-S"><a href="#texttt-Day1-Afternoon-CSP-S" class="headerlink" title="$\texttt{Day1 Afternoon CSP-S}$"></a>$\texttt{Day1 Afternoon CSP-S}$</h3><p>换了一个考场，机子也变好了呢</p>
+<p>T1 感觉非常可做的样子</p>
+<p>然而···</p>
+<p>T1 是一个 sb 题，指一眼看上去这题很 sb，做题时感觉自己很 sb</p>
+<p>一味的追求时间复杂度正确的算法，丝毫没有注意时间过半，还是没调出来</p>
+<p>发现时间不对之后就开 T2</p>
+<p>丝毫没有发现这是一道送分题，写了暴力就开溜了</p>
+<p>T3 丝毫没有发现部分分有什么用，写了一个自以为 $O(q \log n)$ 的线段树，还调出来了（考前 flag 成真）</p>
+<p>T4 就只够写 $n=3$ 的情况了</p>
+<p>最后一直在检查 <code>freopen</code></p>
+<h3 id="texttt-Day1-Evening"><a href="#texttt-Day1-Evening" class="headerlink" title="$\texttt{Day1 Evening}$"></a>$\texttt{Day1 Evening}$</h3><p>回家</p>
+<p>大家都说 T2 送分，我···</p>
+<p>好吧，T2 就是来送分的</p>
+<p>然后发现 T2 我用了 <code>map</code></p>
+<p>然后发现 T4 好像是 $n\le 3$ 的，我没写 $n=1 ,2$ 的情况</p>
+<p>然后发现 T3 线段树是最坏 $O(q \sum c_i \log n)$ 的</p>
+<p>最后发现 T4 就是 $n=3$</p>
+<h3 id="texttt-Day-3-1"><a href="#texttt-Day-3-1" class="headerlink" title="$\texttt{Day 3}$"></a>$\texttt{Day 3}$</h3><p>洛谷自测 $0+40+30+20=90$</p>
+<h3 id="texttt-Day-N-1"><a href="#texttt-Day-N-1" class="headerlink" title="$\texttt{Day N}$"></a>$\texttt{Day N}$</h3><p>官方数据 T3 过水</p>
+<p>$0+40+70+20=130$</p>
+<p>但是 SC 分数线 180 啊</p>
+<p>初中生 Rank 28 </p>
+<p>2=,无勾</p>
+<h3 id="texttt-Summary"><a href="#texttt-Summary" class="headerlink" title="$\texttt{Summary}$"></a>$\texttt{Summary}$</h3><p>学了一年，发现自己啥都不是</p>
+<p>这一年到底学了些什么？</p>
+<p>还有不仔细读题带来的一系列后果</p>
+<p>开题顺序千万不要 1234</p>
+<p>注意细节和码速</p>
+<p>接下来要认真学了</p>
+<blockquote>
+<p>艰难困苦，玉汝于成</p>
+</blockquote>
+<p>2020.11.14  四川，南充</p>
 
     </div>
 
@@ -271,7 +291,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag"># 题解</a>
+              <a href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag"># 随笔</a>
           </div>
 
         
@@ -280,12 +300,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/08/19/%E9%B8%A1%E6%B1%A4/" rel="prev" title="鸡汤">
-      <i class="fa fa-chevron-left"></i> 鸡汤
+    <a href="/2020/04/12/CSP2019%E6%B8%B8%E8%AE%B0/" rel="prev" title="CSP2019游记">
+      <i class="fa fa-chevron-left"></i> CSP2019游记
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/02/03/LuoguP4826%20%E3%80%90%5BUSACO15FEB%5DSuperbull%20%E8%B6%85%E7%BA%A7%E7%89%9B%E3%80%91%E9%A2%98%E8%A7%A3/" rel="next" title="LuoguP4826 【[USACO15FEB]Superbull 超级牛】题解">
-      LuoguP4826 【[USACO15FEB]Superbull 超级牛】题解 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/12/13/Noip2020%20%E6%B8%B8%E8%AE%B0/" rel="next" title="Noip2020 游记">
+      Noip2020 游记 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -345,6 +365,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#texttt-Beginning"><span class="nav-number">1.</span> <span class="nav-text">$\texttt{Beginning}$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#texttt-Day-N"><span class="nav-number">2.</span> <span class="nav-text">$\texttt{Day -N}$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#texttt-Day-12"><span class="nav-number">3.</span> <span class="nav-text">$\texttt{Day -12}$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#texttt-Day-3"><span class="nav-number">4.</span> <span class="nav-text">$\texttt{Day -3}$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#texttt-Day-0"><span class="nav-number">5.</span> <span class="nav-text">$\texttt{Day 0}$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#texttt-Day-1-Morning-CSP-J"><span class="nav-number">6.</span> <span class="nav-text">$\texttt{Day 1 Morning CSP-J}$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#texttt-Day1-Afternoon-CSP-S"><span class="nav-number">7.</span> <span class="nav-text">$\texttt{Day1 Afternoon CSP-S}$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#texttt-Day1-Evening"><span class="nav-number">8.</span> <span class="nav-text">$\texttt{Day1 Evening}$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#texttt-Day-3-1"><span class="nav-number">9.</span> <span class="nav-text">$\texttt{Day 3}$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#texttt-Day-N-1"><span class="nav-number">10.</span> <span class="nav-text">$\texttt{Day N}$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#texttt-Summary"><span class="nav-number">11.</span> <span class="nav-text">$\texttt{Summary}$</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
